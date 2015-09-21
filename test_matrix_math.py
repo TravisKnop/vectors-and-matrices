@@ -1,5 +1,6 @@
 from matrix_math import *
 from nose.tools import raises
+import math
 
 
 def is_equal(x, y, tolerance=0.001):
@@ -22,9 +23,9 @@ def test_shape_vectors():
     """shape should take a vector or matrix and return a tuple with the
     number of rows (for a vector) or the number of rows and columns
     (for a matrix.)"""
-    assert shape(m) == (2,)
-    assert shape(v) == (3,)
-    assert shape([1]) == (1,)
+    assert shape_vectors(m) == (2,)
+    assert shape_vectors(v) == (3,)
+    assert shape_vectors([1]) == (1,)
 
 
 def test_vector_add():
@@ -146,9 +147,9 @@ def test_shape_matrices():
     """shape should take a vector or matrix and return a tuple with the
     number of rows (for a vector) or the number of rows and columns
     (for a matrix.)"""
-    assert shape(A) == (3, 3)
-    assert shape(C) == (3, 2)
-    assert shape(D) == (2, 3)
+    assert shape_vectors(A) == (3, 3)
+    assert shape_vectors(C) == (3, 2)
+    assert shape_vectors(D) == (2, 3)
 
 
 def test_matrix_row():
