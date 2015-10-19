@@ -5,7 +5,7 @@ class ShapeException():
 def dot(vector1, vector2):
     dot_product = 0
     for x in range(len(vector1)):
-        dot_product = dot_product + vector1[x] * vector2[x]
+        dot_product += vector1[x] * vector2[x]
     return dot_product
 
 
@@ -26,7 +26,7 @@ def shape_vectors(c):
 
 def vector_add(vector1, vector2):
     if len(vector1) != (len(vector2)):
-        raise ShapeException
+        raise ShapeException()
     vector_plus = []
     for a in range(len(vector1)):
         vector_plus.append(vector1[a] + vector2[a])
@@ -43,25 +43,27 @@ def vector_sub(vector1, vector2):
 
 
 def vector_sum(*vector):
-    vector_sum = []
-    for a in range(len(*vector)):
-        vector_sum.append(sum(*vector[a]))
+    vectors = list(vector)
+    if len(vector1) != (len(vector2)):
+        raise ShapeException()
+    for a in vector:
+        vector_sum[a] = vector_sum[a] + vector[a]
     return vector_sum
 
 
 def vector_multiply(vector1, scalar):
     vector_scalar_product = []
     for a in range(len(vector1)):
-        vector_scalar_product.append(vector1[a]*scalar)
+        vector_scalar_product.append(vector1[a] * scalar)
     return vector_scalar_product
 
 
-"""To get vector_mean of an unknown number of vectors, combine them into a list:
-def vector_mean(n):
-    #n is a list of all vectors to average
-    num_of_vectors = len(n)
-    vector_mean = vector_multiply( vector_sum(n), 1/num_of_vectors)
-    return vector_mean"""
+#"""To get vector_mean of an unknown number of vectors, combine them into a list:
+#def vector_mean(n):
+#    #n is a list of all vectors to average
+#    num_of_vectors = len(n)
+#    vector_mean = vector_multiply( vector_sum(n), 1/num_of_vectors)
+#    return vector_mean"""
 
 def vector_mean(a,b):
     vector_plus = vector_add(a,b)
@@ -100,14 +102,13 @@ def matrix_vector_multiply(matrix, vector):
 
 
 def matrix_matrix_multiply(matrix1, matrix2):
-    if len(matrix_col(matrix1,0)) != (len(matrix2)):
-        raise ShapeException()
-    matrix_product = []
-    for a in range(len(matrix1)):
-        item = 0
-        matrix1_column = matrix_col(matrix1,a)
-        item += dot(matrix1_column, matrix2[a])
-        matrix_product.append(item)
+    matrix_product = matrix1
+    for column1 in matrix1:
+        for a in matrix1[0]:
+            item = 0
+            matrix1_column = matrix_col(matrix1,a)
+            item += dot(matrix1_column, matrix2[a])
+            matrix_product.append(item)
     for b in range(len(matrix2)):
         item = 0
         matrix2_column = matrix_col(matrix2,b)
